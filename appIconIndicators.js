@@ -327,12 +327,6 @@ class RunningIndicatorDots extends RunningIndicatorBase {
     update() {
         super.update();
 
-        if (this._area && Docking.DockManager.settings.customThemeCustomizeRunningDots) {
-            this._area.translation_y = Docking.DockManager.settings.customThemeRunningDotsOffset;
-        } else {
-            this._area.translation_y = 0;
-        }
-
         // Enable / Disable the backlight of running apps
         if (!Docking.DockManager.settings.applyCustomTheme &&
             Docking.DockManager.settings.unityBacklitItems) {
