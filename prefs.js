@@ -1017,6 +1017,10 @@ const DockSettings = GObject.registerClass({
                 'value',
                 Gio.SettingsBindFlags.DEFAULT);
 
+            this._settings.bind('custom-theme-running-dots-offset',
+                this._builder.get_object('dot_offset_spin_button'),
+                'value',
+                Gio.SettingsBindFlags.DEFAULT);
 
             dialog.connect('response', () => {
                 // remove the settings box so it doesn't get destroyed;

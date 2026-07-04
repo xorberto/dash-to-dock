@@ -300,6 +300,7 @@ class RunningIndicatorDots extends RunningIndicatorBase {
         const keys = ['custom-theme-running-dots-color',
             'custom-theme-running-dots-border-color',
             'custom-theme-running-dots-border-width',
+            'custom-theme-running-dots-offset',
             'custom-theme-customize-running-dots',
             'unity-backlit-items',
             'apply-glossy-effect',
@@ -323,6 +324,12 @@ class RunningIndicatorDots extends RunningIndicatorBase {
 
     update() {
         super.update();
+
+        if (this._area && Docking.DockManager.settings.customThemeCustomizeRunningDots) {
+            this._area.translation_y = Docking.DockManager.settings.customThemeRunningDotsOffset;
+        } else {
+            this._area.translation_y = 0;
+        }
 
         // Enable / Disable the backlight of running apps
         if (!Docking.DockManager.settings.applyCustomTheme &&
