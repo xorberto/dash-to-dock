@@ -344,9 +344,10 @@ class RunningIndicatorDots extends RunningIndicatorBase {
         }
 
         if (this._area) {
+            // Enable / Disable the vertical offset of running dots. Inverted because the offset is 
             if (!Docking.DockManager.settings.applyCustomTheme &&
                 Docking.DockManager.settings.customThemeCustomizeRunningDots) {
-                this._area.translation_y = Docking.DockManager.settings.customThemeRunningDotsOffset;
+                this._area.translation_y = -Docking.DockManager.settings.customThemeRunningDotsOffset;
             } else {
                 this._area.translation_y = 0;
             }
