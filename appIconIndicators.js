@@ -320,6 +320,8 @@ class RunningIndicatorDots extends RunningIndicatorBase {
         const {extension} = Docking.DockManager;
         this._glossyBackgroundStyle = `background-image: url('${extension.path}/media/glossy.svg');` +
                                       'background-size: contain;';
+        
+        this.update();
     }
 
     update() {
@@ -347,8 +349,17 @@ class RunningIndicatorDots extends RunningIndicatorBase {
             this._source._iconContainer.get_children()[1].set_style(null);
         }
 
-        if (this._area)
+        if (this._area) {
+            // Enable / Disable the vertical offset of running dots. Inverted because the offset is 
+            if (!Docking.DockManager.settings.applyCustomTheme &&
+                Docking.DockManager.settings.customThemeCustomizeRunningDots) {
+                this._area.translation_y = -Docking.DockManager.settings.customThemeRunningDotsOffset;
+            } else {
+                this._area.translation_y = 0;
+            }
+
             this._area.queue_repaint();
+        }
     }
 
     _computeStyle() {

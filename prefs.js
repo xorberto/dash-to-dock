@@ -1022,6 +1022,26 @@ const DockSettings = GObject.registerClass({
                 'value',
                 Gio.SettingsBindFlags.DEFAULT);
 
+            // Dynamically adjust the offset limits based on dock size
+            const dotOffsetAdjustment = this._builder.get_object('dot_offset_adjustment');
+
+            const updateOffsetLimits = () => {
+                const iconSize = this._settings.get_int('dash-max-icon-size');
+                
+                const upperLimit = iconSize + 22;
+                const lowerLimit = -10;
+                
+                // Apply the calculated limits
+                dotOffsetAdjustment.set_lower(lowerLimit);
+                dotOffsetAdjustment.set_upper(upperLimit);
+            };
+
+            updateOffsetLimits();
+
+            this._settings.connect('changed::dash-max-icon-size', () => {
+                updateOffsetLimits();
+            });
+
             dialog.connect('response', () => {
                 // remove the settings box so it doesn't get destroyed;
                 dialog.get_content_area().remove(box);

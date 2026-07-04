@@ -217,7 +217,7 @@
       <description>Customize the border width of the running application indicators.</description>
     </key>
     <key type="i" name="custom-theme-running-dots-offset">
-      <default>8</default>
+      <default>0</default>
       <summary>Running dot vertical offset</summary>
       <description>Offset the running dot vertically in pixels.</description>
     </key>
