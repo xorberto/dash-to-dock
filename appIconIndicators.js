@@ -325,12 +325,6 @@ class RunningIndicatorDots extends RunningIndicatorBase {
     update() {
         super.update();
 
-        if (this._area && Docking.DockManager.settings.customThemeCustomizeRunningDots) {
-            this._area.translation_y = Docking.DockManager.settings.customThemeRunningDotsOffset;
-        } else {
-            this._area.translation_y = 0;
-        }
-
         // Enable / Disable the backlight of running apps
         if (!Docking.DockManager.settings.applyCustomTheme &&
             Docking.DockManager.settings.unityBacklitItems) {
@@ -347,8 +341,16 @@ class RunningIndicatorDots extends RunningIndicatorBase {
             this._source._iconContainer.get_children()[1].set_style(null);
         }
 
-        if (this._area)
+        if (this._area) {
+            if (!Docking.DockManager.settings.applyCustomTheme &&
+                Docking.DockManager.settings.customThemeCustomizeRunningDots) {
+                this._area.translation_y = Docking.DockManager.settings.customThemeRunningDotsOffset;
+            } else {
+                this._area.translation_y = 0;
+            }
+
             this._area.queue_repaint();
+        }
     }
 
     _computeStyle() {
