@@ -320,6 +320,8 @@ class RunningIndicatorDots extends RunningIndicatorBase {
         const {extension} = Docking.DockManager;
         this._glossyBackgroundStyle = `background-image: url('${extension.path}/media/glossy.svg');` +
                                       'background-size: contain;';
+        
+        this.update();
     }
 
     update() {
